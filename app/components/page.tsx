@@ -19,8 +19,8 @@ const components = [
 
 export default function ComponentsPage() {
   return (
-    <div className="container max-w-6xl py-6 lg:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
+    <div className="container mx-auto py-6 px-16 lg:py-10">
+      <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block text-4xl font-extrabold tracking-tight lg:text-5xl">Components</h1>
           <p className="text-xl text-muted-foreground">

@@ -26,7 +26,7 @@ export default function RootLayout({
               <div className="hidden h-screen border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:block">
                 <AppSidebar />
               </div>
-              <div className="flex w-full flex-col">
+              <div className="flex-1 lg:flex flex w-full flex-col">
                 <Header />
                 <main className="flex-1">
                   {children}

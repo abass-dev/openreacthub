@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function DevelopingCLIPage() {
   return (
-    <div className="container max-w-full py-6 lg:py-10">
+    <div className="container mx-auto py-6 px-16 lg:py-10">
       <h1 className="text-4xl font-bold mb-4">Developing @open-react-hub CLI</h1>
       <p className="text-xl text-muted-foreground mb-8">
         This guide will walk you through the process of developing the @open-react-hub CLI, 

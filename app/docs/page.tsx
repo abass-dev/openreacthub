@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function DocsPage() {
   return (
-    <div className="container max-w-full py-6 lg:py-10">
+    <div className="flex flex-col items-center min-h-[calc(100vh-4rem)] px-4 py-16 text-center">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block text-4xl font-bold lg:text-5xl">Documentation</h1>
