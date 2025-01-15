@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { ArrowRight, BoxIcon as ButtonIcon, CreditCard, Layers, SlidersHorizontal, Type } from 'lucide-react'
+import { ArrowRight, TextIcon } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Components | OpenReactHub',
@@ -10,16 +10,12 @@ export const metadata: Metadata = {
 }
 
 const components = [
-  { name: 'Button', description: 'A clickable button element with multiple variants and sizes.', icon: ButtonIcon },
-  { name: 'Card', description: 'A container for content with header, footer, and content sections.', icon: CreditCard },
-  { name: 'Dialog', description: 'A modal dialog that interrupts the user with important content.', icon: Layers },
-  { name: 'Input', description: 'An input field for collecting user data with various states.', icon: Type },
-  { name: 'Select', description: 'A dropdown select component with support for groups and search.', icon: SlidersHorizontal },
+  { name: 'Text Animations', description: 'Components for animating and manipulating text.', icon: TextIcon, url: '/components/text-animations/split-text' },
 ]
 
 export default function ComponentsPage() {
   return (
-    <div className="container mx-auto py-6 px-16 lg:py-10">
+    <div className="container mx-auto py-6 px-4 md:px-6 lg:py-10">
       <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block text-4xl font-extrabold tracking-tight lg:text-5xl">Components</h1>
@@ -40,7 +36,7 @@ export default function ComponentsPage() {
             </CardHeader>
             <CardContent className="mt-auto pt-4">
               <Button asChild variant="outline" className="w-full">
-                <Link href={`/components/${component.name.toLowerCase()}`} className="flex items-center justify-center">
+                <Link href={component.url} className="flex items-center justify-center">
                   View Details
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -49,6 +45,11 @@ export default function ComponentsPage() {
           </Card>
         ))}
       </div>
+      {components.length === 0 && (
+        <div className="text-center mt-8">
+          <p className="text-xl text-muted-foreground">No components are currently available. Check back soon for updates!</p>
+        </div>
+      )}
     </div>
   )
 }

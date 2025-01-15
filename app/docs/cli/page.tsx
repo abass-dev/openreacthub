@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export const metadata: Metadata = {
   title: 'CLI | OpenReactHub',
-  description: 'Documentation for the OpenReactHub CLI tool',
+  description: 'Documentation for the OpenReactHub CLI tool and component installation',
 }
 
 export default function CLIPage() {
@@ -20,20 +20,21 @@ export default function CLIPage() {
           </p>
         </div>
       </div>
-      
+
       <Tabs defaultValue="installation" className="mt-8">
-        <TabsList>
+        <TabsList defaultValue="installation">
           <TabsTrigger value="installation">Installation</TabsTrigger>
           <TabsTrigger value="usage">Usage</TabsTrigger>
           <TabsTrigger value="commands">Commands</TabsTrigger>
-          <TabsTrigger value="one-time">One-Time Installation</TabsTrigger>
+          <TabsTrigger value="component-installation">Component Installation</TabsTrigger>
         </TabsList>
         <TabsContent value="installation" className="space-y-4">
           <h2 className="text-2xl font-bold">Installation</h2>
-          <p>To install the OpenReactHub CLI, run the following command in your terminal:</p>
+          <p>To install the OpenReactHub CLI globally, run the following command in your terminal:</p>
           <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code className='overflow-hidden'>npm install -g @open-react-hub/cli</code>
+            <code>npm install -g @open-react-hub/cli</code>
           </pre>
+          <p>Alternatively, you can use the CLI without global installation using npx.</p>
         </TabsContent>
         <TabsContent value="usage" className="space-y-4">
           <h2 className="text-2xl font-bold">Usage</h2>
@@ -41,33 +42,23 @@ export default function CLIPage() {
           <pre className="bg-muted p-4 rounded-md overflow-x-auto">
             <code>orh [command] [options]</code>
           </pre>
-          <p>For example, to create a new project:</p>
+          <p>For example, to add a component:</p>
           <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code>orh create my-project</code>
+            <code>orh add ui/split-text</code>
           </pre>
         </TabsContent>
         <TabsContent value="commands" className="space-y-4">
           <h2 className="text-2xl font-bold">Commands</h2>
           <ul className="space-y-4">
             <li>
-              <h3 className="text-xl font-semibold">create</h3>
-              <p>Create a new OpenReactHub project</p>
-              <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                <code>orh create [project-name]</code>
-              </pre>
-            </li>
-            <li>
               <h3 className="text-xl font-semibold">add</h3>
               <p>Add a new component to your project</p>
               <pre className="bg-muted p-4 rounded-md overflow-x-auto">
                 <code>orh add [component-name]</code>
               </pre>
-            </li>
-            <li>
-              <h3 className="text-xl font-semibold">build</h3>
-              <p>Build your OpenReactHub project</p>
+              <p>To add a component from a specific source (e.g., GitHub):</p>
               <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-                <code>orh build</code>
+                <code>orh add github [component-name]</code>
               </pre>
             </li>
             <li>
@@ -79,33 +70,30 @@ export default function CLIPage() {
             </li>
           </ul>
         </TabsContent>
-        <TabsContent value="one-time" className="space-y-4">
-          <h2 className="text-2xl font-bold">One-Time Installation</h2>
-          <p>
-            OpenReactHub CLI supports one-time installation of components without the need to install the CLI globally. 
-            This is useful for quickly adding components to your project or trying out OpenReactHub without committing to a full installation.
-          </p>
-          <h3 className="text-xl font-semibold mt-4">Usage</h3>
-          <p>To use the one-time installation feature, you can use <code>npx</code> to run the CLI directly:</p>
+        <TabsContent value="component-installation" className="space-y-4">
+          <h2 className="text-2xl font-bold">Component Installation</h2>
+          <p>There are multiple ways to install and use OpenReactHub components:</p>
+          <h3 className="text-xl font-semibold mt-4">1. Direct npm installation</h3>
           <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code>npx @open-react-hub/cli add [component-name]</code>
+            <code>npm install @open-react-hub/split-text</code>
           </pre>
-          <p>For example, to add the Button component to your project:</p>
+          <h3 className="text-xl font-semibold mt-4">2. Using npx without global installation</h3>
           <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code>npx @open-react-hub/cli add Button</code>
+            <code>npx @open-react-hub/split-text add ui/split-text</code>
           </pre>
-          <h3 className="text-xl font-semibold mt-4">Benefits</h3>
-          <ul className="list-disc list-inside space-y-2">
-            <li>No global installation required</li>
-            <li>Always uses the latest version of the CLI</li>
-            <li>Perfect for CI/CD pipelines or one-off component additions</li>
-            <li>Reduces clutter in your global npm packages</li>
-          </ul>
-          <h3 className="text-xl font-semibold mt-4">Limitations</h3>
-          <p>
-            While the one-time installation is convenient, it may be slower than using a globally installed CLI for frequent use. 
-            If you find yourself using OpenReactHub components often, consider installing the CLI globally for a smoother workflow.
-          </p>
+          <p>To add from a specific source (e.g., GitHub):</p>
+          <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+            <code>npx @open-react-hub/split-text add github ui/split-text</code>
+          </pre>
+          <h3 className="text-xl font-semibold mt-4">3. Using the global CLI</h3>
+          <p>After installing the CLI globally, you can use:</p>
+          <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+            <code>orh add ui/split-text</code>
+          </pre>
+          <p>Or to add from a specific source:</p>
+          <pre className="bg-muted p-4 rounded-md overflow-x-auto">
+            <code>orh add github ui/split-text</code>
+          </pre>
         </TabsContent>
       </Tabs>
 

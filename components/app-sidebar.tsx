@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Package, FileText, Cpu, Lightbulb, Terminal, Code, Search } from 'lucide-react'
+import { Package, FileText, Cpu, Lightbulb, Terminal, Code, Search, TextIcon, LucideProps } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -27,10 +27,12 @@ const docsNavItems = [
 ]
 
 const componentsNavItems = [
-  { title: 'Button', url: '/components/button' },
-  { title: 'Card', url: '/components/card' },
-  { title: 'Dialog', url: '/components/dialog' },
-  { title: 'Input', url: '/components/input' },
+  {
+    title: 'Text Animations',
+    items: [
+      { title: 'Split Text', url: '/components/text-animations/split-text', icon: TextIcon },
+    ]
+  },
 ]
 
 export function AppSidebar() {
@@ -46,7 +48,6 @@ export function AppSidebar() {
           <Package className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg">OpenReactHub</span>
         </Link>
-        {/* Toggle button for mobile */}
         <button
           className="lg:hidden p-2 rounded-md hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
           onClick={toggleMobileSidebar}
@@ -58,7 +59,6 @@ export function AppSidebar() {
       <div className={`lg:block ${isMobileOpen ? 'block' : 'hidden'}`}>
         <ScrollArea className="flex-1">
           <SidebarContent className="p-4">
-            {/* Search Bar */}
             <div className="mb-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -69,7 +69,6 @@ export function AppSidebar() {
                 />
               </div>
             </div>
-            {/* Documentation Links */}
             <SidebarGroup>
               <SidebarGroupLabel className="text-base font-semibold px-2">Documentation</SidebarGroupLabel>
               <SidebarGroupContent>
@@ -93,24 +92,47 @@ export function AppSidebar() {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
-            {/* Components Links */}
             <SidebarGroup>
               <SidebarGroupLabel className="text-base font-semibold px-2 mt-6">Components</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {componentsNavItems.map((item) => (
-                    <SidebarMenuItem key={item.url}>
-                      <SidebarMenuButton
-                        asChild
-                        isActive={pathname === item.url}
-                        className={`flex w-full items-center rounded-lg px-2 py-2 ${
-                          pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
-                        }`}
-                      >
-                        <Link href={item.url} aria-current={pathname === item.url ? 'page' : undefined}>
-                          {item.title}
-                        </Link>
-                      </SidebarMenuButton>
+                    <SidebarMenuItem key={item.url || item.title}>
+                      {item.url ? (
+                        <SidebarMenuButton
+                          asChild
+                          isActive={pathname === item.url}
+                          className={`flex w-full items-center rounded-lg px-2 py-2 ${
+                            pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
+                          }`}
+                        >
+                          <Link href={item.url} aria-current={pathname === item.url ? 'page' : undefined}>
+                            {item.title}
+                          </Link>
+                        </SidebarMenuButton>
+                      ) : (
+                        <React.Fragment>
+                          <SidebarGroupLabel className="text-sm font-medium px-2 py-1">{item.title}</SidebarGroupLabel>
+                          <SidebarMenu>
+                            {item.items.map((subItem) => (
+                              <SidebarMenuItem key={subItem.url}>
+                                <SidebarMenuButton
+                                  asChild
+                                  isActive={pathname === subItem.url}
+                                  className={`flex w-full items-center gap-2 rounded-lg px-4 py-2 ${
+                                    pathname === subItem.url ? 'bg-accent text-primary' : 'hover:bg-accent'
+                                  }`}
+                                >
+                                  <Link href={subItem.url} aria-current={pathname === subItem.url ? 'page' : undefined}>
+                                    {subItem.icon && <subItem.icon className="h-4 w-4" aria-hidden="true" />}
+                                    <span>{subItem.title}</span>
+                                  </Link>
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                            ))}
+                          </SidebarMenu>
+                        </React.Fragment>
+                      )}
                     </SidebarMenuItem>
                   ))}
                 </SidebarMenu>
@@ -122,3 +144,4 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
+
