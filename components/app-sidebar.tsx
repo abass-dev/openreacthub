@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Package, FileText, Cpu, Lightbulb, Terminal, Code, Search, TextIcon, LucideProps } from 'lucide-react'
+import { Package, FileText, Cpu, Lightbulb, Terminal, Code, Search, TextIcon, LucideProps, Code2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -31,6 +31,12 @@ const componentsNavItems = [
     title: 'Text Animations',
     items: [
       { title: 'Split Text', url: '/components/text-animations/split-text', icon: TextIcon },
+    ]
+  },
+  {
+    title: 'Others',
+    items: [
+      { title: 'Code Block', url: '/components/code-block', icon: Code2 },
     ]
   },
 ]
@@ -78,9 +84,8 @@ export function AppSidebar() {
                       <SidebarMenuButton
                         asChild
                         isActive={pathname === item.url}
-                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-2 ${
-                          pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
-                        }`}
+                        className={`flex w-full items-center gap-2 rounded-lg px-2 py-2 ${pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
+                          }`}
                       >
                         <Link href={item.url} aria-current={pathname === item.url ? 'page' : undefined}>
                           <item.icon className="h-4 w-4" aria-hidden="true" />
@@ -102,9 +107,8 @@ export function AppSidebar() {
                         <SidebarMenuButton
                           asChild
                           isActive={pathname === item.url}
-                          className={`flex w-full items-center rounded-lg px-2 py-2 ${
-                            pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
-                          }`}
+                          className={`flex w-full items-center rounded-lg px-2 py-2 ${pathname === item.url ? 'bg-accent text-primary' : 'hover:bg-accent'
+                            }`}
                         >
                           <Link href={item.url} aria-current={pathname === item.url ? 'page' : undefined}>
                             {item.title}
@@ -119,9 +123,8 @@ export function AppSidebar() {
                                 <SidebarMenuButton
                                   asChild
                                   isActive={pathname === subItem.url}
-                                  className={`flex w-full items-center gap-2 rounded-lg px-4 py-2 ${
-                                    pathname === subItem.url ? 'bg-accent text-primary' : 'hover:bg-accent'
-                                  }`}
+                                  className={`flex w-full items-center gap-2 rounded-lg px-4 py-2 ${pathname === subItem.url ? 'bg-accent text-primary' : 'hover:bg-accent'
+                                    }`}
                                 >
                                   <Link href={subItem.url} aria-current={pathname === subItem.url ? 'page' : undefined}>
                                     {subItem.icon && <subItem.icon className="h-4 w-4" aria-hidden="true" />}

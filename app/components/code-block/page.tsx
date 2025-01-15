@@ -96,7 +96,7 @@ export default function CodeBlockPage() {
         <ComponentDocPage
             title="Code Block Component"
             description="A feature-rich code block component with syntax highlighting, line numbers, copy functionality, and command-line interface support."
-            installCommand="npm install prismjs @types/prismjs lucide-react"
+            installCommand={`orh add ui/code-block\n// OR \nnpx @open-react-hub/cli add @open-react-hub/code-block\n// OR \nyarn add @open-react-hub/code-block\n// OR\nnpm install @open-react-hub/code-block`}
             usageCode={`${usageExample}\n\n// Command-line interface example:\n${commandLineExample}`}
             PreviewComponent={CodeBlockPreview}
             props={codeBlockProps}
